@@ -1,11 +1,15 @@
 <h1>Meetups</h1>
-<ul>
+<div class="meetups_container row">
   <% @meetups.each do |meetup| %>
-    <li>
-        <h2><a href="/meetups/<%= meetup.id %>"><%= meetup.name %></a></h2>
-        Description: <%= meetup.description %>
-        <br>
-        Location: <%= meetup.location  %>
-    </li>
+    <div class="small-4 columns">
+
+        <button class="meetup_page"><a href="/meetups/<%= meetup.id %>">Go to: <%= meetup.name %></a></button>
+        <p>
+          Description: <%= meetup.description %>
+        </p>
+        <p>
+          Location: <%= meetup.location  %>
+        </p>
+    </div>
     <% end %>
-</ul>
+</div>
