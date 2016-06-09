@@ -4,10 +4,25 @@ body {
   color: #FFFFFF;
 }
 
-a,
-a:visited {
-  color: #FFFFFF;
+a {
   text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.meetup_page {
+  background-color: rgb(217, 224, 74);
+  border-radius: 25px;
+  border-style: solid;
+  border-color: black;
+}
+
+.meetups_container {
+  background-color: rgba(179, 217, 226, 0.35);
+}
+
+.hover_background {
+  background-color: rgb(54, 185, 130);
 }
 
 .container {
@@ -37,6 +52,7 @@ a:visited {
 .logo {
   display: inline-block;
   margin: 1em 0;
+  color: rgb(221, 183, 203);
 }
 
 .flash {
