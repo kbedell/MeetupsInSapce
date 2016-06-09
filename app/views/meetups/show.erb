@@ -1,6 +1,6 @@
 <h1><%= @meetup.name %></h1>
-<h2><%= @meetup.description %></h2>
-<h2><%= @meetup.location %></h2>
+<h2>Description: <%= @meetup.description %></h2>
+<h2>Location: <%= @meetup.location %></h2>
 
 <% @members.each do |member| %>
   <% if member.creator %>
@@ -9,9 +9,13 @@
 <% end %>
 
 <h3>Members: </h3>
+<ul class="member">
 <% @members.each do |member| %>
-  <div>
+  <li>
     <img class="member_avatar" src="<%= member.user.avatar_url %>">
     <span class="member_name"><%=member.user.username%></span>
-  </div>
+  </li>
 <% end %>
+</ul>
+
+<a href="/meetups/join" class="button">Join Meetup</a>

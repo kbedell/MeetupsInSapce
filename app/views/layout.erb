@@ -5,24 +5,30 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/stylesheets/normalize.css" />
+    <link rel="stylesheet" href="/stylesheets/foundation.min.css" />
     <link rel="stylesheet" href="/stylesheets/app.css" />
   </head>
   <body>
 
+    <!-- Start Top Bar -->
     <div class="top-bar">
-      <div class="container">
-        <a class="logo" href="/">Meetups in Space</a>
-
-        <ul class="top-bar-section">
+      <div class="top-bar-left">
+        <ul class="menu">
+          <li class="menu-text"><a href="/meetups" class="site-name">Meetups in Space</a></li>
+        </ul>
+      </div>
+      <div class="top-bar-right">
+        <ul class="menu">
           <% if current_user %>
-            <li>Signed in as <%= current_user.username %></a></li>
-            <li><a href="/sign_out">Sign Out</a></li>
+            <li class="menu-text">Signed in as <%= current_user.username %></a></li>
+            <li class="menu-text"><a href="/sign_out">Sign Out</a></li>
           <% else %>
-            <li><a href="/auth/github">Sign In</a></li>
+            <li class="menu-text"><a href="/auth/github">Sign In</a></li>
           <% end %>
         </ul>
       </div>
     </div>
+    <!-- End Top Bar -->
 
     <% if flash.any? %>
       <div class="flash">
@@ -32,10 +38,12 @@
       </div>
     <% end %>
 
-    <div class="container">
+    <div class= "row column">
       <%= yield %>
     </div>
     <script src="/javascripts/jquery-2.1.4.min.js"></script>
     <script src="/javascripts/app.js"></script>
+    <script src="/javascripts/what-input.js"></script>
+    <script src="/javascripts/foundation.min.js"></script>
   </body>
 </html>

@@ -41,6 +41,10 @@ get '/meetups/new' do
   erb :'meetups/new'
 end
 
+post 'meetups/join' do
+  erb :'meetups/show'
+end
+
 get '/meetups/:id' do
   id = params["id"]
   @meetup = Meetup.find(id)

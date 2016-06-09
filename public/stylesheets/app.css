@@ -15,12 +15,21 @@ a:visited {
   margin: 0 auto;
 }
 
+label {
+  color: #fff;
+}
+
+.member {
+  list-style: none;
+  padding-left: 25px;
+}
+
 .member_avatar {
   height: 128;
   width: 128;
 }
 
-.top-bar {
+.top-bar, .top-bar ul {
   background-color: #3C3C3C;
 }
 
@@ -32,6 +41,10 @@ a:visited {
 .top-bar-section li {
   display: inline-block;
   margin-left: 1em;
+}
+
+.site-name {
+  padding: 0px;
 }
 
 .logo {
