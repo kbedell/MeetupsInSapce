@@ -38,11 +38,37 @@ get '/meetups' do
 end
 
 get '/meetups/new' do
-  erb :'meetups/new'
+  if current_user
+    @errors = []
+    erb :'meetups/new'
+  else
+    flash[:notice] = "You need to be signed in to create a new meetup"
+    redirect '/meetups'
+  end
 end
 
-post 'meetups/join' do
-  erb :'meetups/show'
+post '/meetups/new' do
+  if current_user
+    m = Meetup.create(name: params[:name], description: params[:description], location: params[:location])
+
+    if m.valid?
+      Member.create(user_id: current_user.id, meetup_id: m.id, creator: true)
+      id = m.id
+      flash[:notice] = "You have successfully created a new meetup"
+      redirect "/meetups/#{id}"
+    else
+      @name = params[:name]
+      @description = params[:description]
+      @location = params[:location]
+      @errors = m.errors.full_messages
+
+      erb :'meetups/new'
+
+    end
+  else
+    flash[:notice] = "You need to be signed in to create a new meetup"
+    redirect "/meetups"
+  end
 end
 
 get '/meetups/:id' do
@@ -51,4 +77,18 @@ get '/meetups/:id' do
   @members = Member.where(meetup_id: id)
 
   erb :'meetups/show'
+end
+
+post '/meetups/:id' do
+  if current_user
+    id = params["id"]
+    Member.create(user_id: current_user.id, meetup_id: id)
+    flash[:notice] = "You successfully joined the meetup"
+    redirect "/meetups/#{id}"
+
+  else
+    id = params["id"]
+    flash[:notice] = "You need to be signed in to join a meetup"
+    redirect "/meetups/#{id}"
+  end
 end

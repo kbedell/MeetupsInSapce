@@ -37,29 +37,17 @@ feature "user views all meetups" do
     )
   end
 
-  let(:member2) do
-    Member.create(
-    user_id: user2.id,
-    meetup_id: meetup.id
-    )
-  end
-
-  scenario "user sees all of the meetup details" do
+  scenario "user clicks on Join Meetup" do
     user
     user2
     meetup
     member
-    member2
     visit '/'
+    sign_in_as user2
     click_link("test meetup")
-
-    expect(page).to have_content "test meetup"
-    expect(page).to have_content "Description: This is our meetup"
-    expect(page).to have_content "Location: Boston"
-    expect(page).to have_content "Creator: jarlax1"
-    expect(page).to have_content "Members:"
-    expect(page).to have_content "herpderp"
+    click_button("Join Meetup")
+    expect(page).to have_content("herpderp")
     expect(page).to have_xpath("//img[@src=\"https://avatars2.githubusercontent.com/u/174825?v=3&s=400\"]")
-
+    expect(page).to have_content("You successfully joined the meetup")
   end
 end

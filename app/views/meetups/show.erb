@@ -18,4 +18,6 @@
 <% end %>
 </ul>
 
-<a href="/meetups/join" class="button">Join Meetup</a>
+<form action="/meetups/<%= @meetup.id %>" method="post">
+  <input type="submit" class="button" value="Join Meetup">
+</form>

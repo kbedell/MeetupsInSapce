@@ -99,6 +99,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
+    shoulda-matchers (2.4.0)
+      activesupport (>= 3.0.0)
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -113,6 +115,7 @@ GEM
     tilt (2.0.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    valid_attribute (2.0.0)
     websocket-driver (0.6.4)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -135,9 +138,11 @@ DEPENDENCIES
   pry
   rake
   rspec
+  shoulda-matchers (~> 2.4.0)
   sinatra
   sinatra-activerecord
   sinatra-flash
+  valid_attribute
 
 BUNDLED WITH
    1.12.5

@@ -12,6 +12,8 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'dotenv'
+  gem 'valid_attribute'
+  gem 'shoulda-matchers', '~> 2.4.0', require: false
 end
 
 group :test do

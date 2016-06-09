@@ -1,1 +1,1 @@
-//JAVASCRIPT CODE GOES HERE
+$(document).foundation()

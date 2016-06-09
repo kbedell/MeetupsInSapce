@@ -33,8 +33,8 @@ feature "user views all meetups" do
     visit '/'
 
     expect(page).to have_content "test meetup"
-    expect(page).to have_content "Description: This is our meetup"
-    expect(page).to have_content "Location: Boston"
+    expect(page).to have_no_content "Description: This is our meetup"
+    expect(page).to have_no_content "Location: Boston"
 
     expect("A meetup").to appear_before("test meetup")
   end

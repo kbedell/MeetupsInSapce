@@ -44,22 +44,51 @@ feature "user views all meetups" do
     )
   end
 
-  scenario "user sees a list of all meetups" do
+  scenario "users sees a form" do
     user
     user2
     meetup
     member
     member2
     visit '/'
-    click_link("test meetup")
+    sign_in_as user
+    click_link("Create new meetup")
 
-    expect(page).to have_content "test meetup"
-    expect(page).to have_content "This is our meetup"
-    expect(page).to have_content "Boston"
-    expect(page).to have_content "Creator: jarlax1"
-    expect(page).to have_content "Members:"
-    expect(page).to have_content "herpderp"
-    expect(page).to have_xpath("//img[@src=\"https://avatars2.githubusercontent.com/u/174825?v=3&s=400\"]")
+    expect(page).to have_content("Name")
+    expect(page).to have_content("Location")
+    expect(page).to have_content("Description")
+  end
 
+  scenario "users recieves an error that they need to sign in" do
+    user
+    user2
+    meetup
+    member
+    member2
+    visit '/'
+    click_link("Create new meetup")
+
+    expect(page).to have_content("You need to be signed in to create a new meetup")
+  end
+
+  scenario "users submits a form" do
+    user
+    user2
+    meetup
+    member
+    member2
+    visit '/'
+    sign_in_as user
+    click_link("Create new meetup")
+    fill_in('Name', with: 'Test Site')
+    fill_in('description', with: 'This is a thing')
+    fill_in('location', with: 'Boston')
+
+    click_button("Create new meetup")
+
+    expect(page).to have_content("You have successfully created a new meetup")
+    expect(page).to have_content("Test Site")
+    expect(page).to have_content("Location: Boston")
+    expect(page).to have_content("Description: This is a thing")
   end
 end

@@ -15,8 +15,26 @@ a:visited {
   margin: 0 auto;
 }
 
+.hide_me {
+  display:none;
+}
+
 label {
   color: #fff;
+}
+
+.no-js .top-bar {
+  display: none;
+}
+
+@media screen and (min-width: 40em) {
+  .no-js .top-bar {
+    display: block;
+  }
+
+  .no-js .title-bar {
+    display: none;
+  }
 }
 
 .member {
@@ -25,8 +43,8 @@ label {
 }
 
 .member_avatar {
-  height: 128;
-  width: 128;
+  max-height: 128px;
+  max-width: 128px;
 }
 
 .top-bar, .top-bar ul {
@@ -45,11 +63,6 @@ label {
 
 .site-name {
   padding: 0px;
-}
-
-.logo {
-  display: inline-block;
-  margin: 1em 0;
 }
 
 .flash {

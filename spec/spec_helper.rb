@@ -6,6 +6,8 @@ require 'orderly'
 
 require_relative '../app.rb'
 Dir[__dir__ + '/support/*.rb'].each { |file| require_relative file }
+require 'shoulda-matchers'
+require 'valid_attribute'
 
 Capybara.app = Sinatra::Application
 Capybara.javascript_driver = :poltergeist

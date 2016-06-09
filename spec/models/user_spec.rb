@@ -42,4 +42,8 @@ describe User do
       end
     end
   end
+
+  describe "user has meetups" do
+    it { should have_many :meetups }
+  end
 end
