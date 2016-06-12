@@ -43,8 +43,35 @@ end
 
 get '/meetups/:id' do
   id = params["id"]
+  @display_form = false
+  @message = "You must be signed in and a member of this meetup to make a comment."
   @meetup = Meetup.find(id)
   @members = Member.where(meetup_id: id)
+  @user_ids = []
+  @members.each do |member|
+    @user_ids << member.user_id
+  end
+  @comments = []
 
+  Comment.find_each do |comment|
+    if @user_ids.include?(comment.user_id) && comment.meetup_id == @meetup.id
+      @comments << comment
+    end
+  end
+
+  if current_user
+    @display_form = true
+  end
   erb :'meetups/show'
+end
+
+post '/comment/:meetup_id' do
+  new_comment = Comment.new(body: params[:body], user_id: current_user.id, meetup_id: Meetup.find(params[:meetup_id].to_i).id)
+  if new_comment.valid?
+    new_comment.save
+    redirect "/meetups/#{params[:meetup_id]}"
+  else
+    flash[:notice] = "The comment was not saved."
+    redirect "/meetups/#{params[:meetup_id]}"
+  end
 end

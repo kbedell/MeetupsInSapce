@@ -15,3 +15,23 @@
     <span class="member_name"><%=member.user.username%></span>
   </div>
 <% end %>
+
+<h3>Comments: </h3>
+
+<%if @display_form%>
+  <form action="/comment/<%=@meetup.id%>" method="post">
+    <label for="body">Your Comment Here:</label>
+    <input type="text" name="body">
+    <input type="submit" name="submit">
+  </form>
+<%else%>
+  <h1><%=@message%></h1>
+<%end%>
+
+<%@comments.each do |comment|%>
+  <div>
+    <%=comment.user.username%>
+    <br>
+    <%=comment.body%>
+  </div>
+<%end%>
