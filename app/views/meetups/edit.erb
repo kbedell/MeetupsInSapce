@@ -1,0 +1,22 @@
+<h1>Edit Meetup</h1>
+
+<form action="/meetups/<%= @id %>/edit" method="post">
+  <div class="row">
+    <div class="small-12 columns">
+      <label for="name">Name
+        <input type="text" id="name" name="name" value="<%= @name %>">
+      </label>
+    </div>
+    <div class="small-12 columns">
+      <label>Description
+        <input type="text" id="description" name="description" value="<%= @description %>">
+      </label>
+    </div>
+    <div class="small-12 columns">
+      <label>Location
+        <input type="text" id="location" name="location" value="<%= @location %>">
+      </label>
+    </div>
+    <input type="submit" class="button" value="Edit Meetup">
+  </div>
+</form>

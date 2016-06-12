@@ -55,6 +55,7 @@ label {
   padding-left: 25px;
 }
 
+<<<<<<< Updated upstream
 .member_avatar {
   max-height: 128px;
   max-width: 128px;
@@ -66,19 +67,39 @@ label {
 
 .top-bar, .top-bar ul, .title-bar {
   background-color: #3C3C3C;
+=======
+label {
+  color: #fff;
 }
 
-.top-bar-section {
+.member_avatar {
+  height: 128px;
+  width: 128px;
+>>>>>>> Stashed changes
+}
+
+.member_name {
   display: inline-block;
-  float: right;
+  height: 128px;
+  vertical-align: middle;
 }
 
-.top-bar-section li {
-  display: inline-block;
-  margin-left: 1em;
+.menu-text {
+  font-size: 1.5em;
 }
 
+<<<<<<< Updated upstream
 .site-name {
+=======
+.top-bar, .top-bar ul {
+  background-color: #3C3C3C;
+}
+.row {
+  max-width: 89rem;
+}
+
+.site_name {
+>>>>>>> Stashed changes
   padding: 0px;
 }
 

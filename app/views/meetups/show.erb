@@ -2,88 +2,19 @@
 <h2>Description: <%= @meetup.description %></h2>
 <h2>Location: <%= @meetup.location %></h2>
 
-<% creator = nil %>
 <% @members.each do |member| %>
-<% if member.creator %>
-<% creator = member.user_id %>
-<h3>Creator: <%= member.user.username %></h3>
-<% end %>
+  <% if member.creator %>
+    <h3>Creator: <%= member.user.username %></h3>
+  <% end %>
 <% end %>
 
-<div id="members">
-  <h3>Members: </h3>
-  <ul class="member">
-    <% @members.each do |member| %>
-    <li>
-      <img class="member_avatar" src="<%= member.user.avatar_url %>">
-      <span class="member_name"><%=member.user.username%></span>
-    </li>
-    <% end %>
-  </ul>
-</div>
+<h3>Members: </h3>
 
-<% user_exist = defined? current_user.id %>
-<% if user_exist != nil %>
-<% members_testing = [] %>
 <% @members.each do |member| %>
-<% if member.user_id == current_user.id %>
-<% members_testing << true %>
-<% end %>
-<% end %>
-
-<div id="join_scripts">
-  <div class="meetup_button" id="join_button">
-    <form action="">
-      <button type="button" class="button" onclick="join_meetup(<%= @id %>)">Join Meetup</button>
-    </form>
-  </div>
-
-  <% if members_testing.include? true %>
-  <script>
-    hide_join();
-  </script>
-  <% end %>
+<div class="member">
+    <img class="member_avatar" src="<%= member.user.avatar_url %>">
+    <div class="member_name"><%=member.user.username%></div>
 </div>
+<% end %>
 
-<script>
-function join_meetup(id) {
-  var settings = {
-    "async": true,
-    "url": "http://localhost:4567/meetups/"+id,
-    "method": "POST"
-  }
-
-  $.ajax(settings).done(function (response) {
-    console.log(response);
-    $("#members").load(window.location + " #members");
-    $("#join_scripts").load(window.location + " #join_scripts");
-    $("#meetup_functions").load(window.location + " #meetup_functions");
-    hide_join();
-  });
-}
-</script>
-
-<div id="meetup_functions">
-  <% if members_testing.include? true %>
-  <div class="meetup_button">
-    <form action="/meetups/<%= @meetup.id %>/leave" method="post">
-      <input type="submit" class="button" id="leave_button" value="Leave Meetup">
-    </form>
-  </div>
-  <% end %>
-
-  <% if current_user.id == creator %>
-  <div class="meetup_button">
-    <a href="/meetups/<%= @id %>/edit" class="button" id="edit_button">Edit Meetup</a>
-  </div>
-  <% end %>
-
-  <% if current_user.id == creator %>
-  <div class="meetup_button">
-    <form action="/meetups/<%= @meetup.id %>/delete" method="post">
-      <input type="submit" class="button" id="delete_button" value="Delete Meetup">
-    </form>
-  </div>
-  <% end %>
-  <% end %>
-</div>
+<a href="#" class="button">Join Meetup</a>
