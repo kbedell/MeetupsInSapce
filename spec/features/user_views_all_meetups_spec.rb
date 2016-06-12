@@ -27,15 +27,24 @@ feature "user views all meetups" do
       )
   end
 
-  scenario "user sees a list of all meetups" do
+  let(:set_up) do
+    user
     meetup
     meetup2
+  end
+
+  scenario "user sees a list of all meetups" do
+    set_up
     visit '/'
 
     expect(page).to have_content "test meetup"
     expect(page).to have_no_content "Description: This is our meetup"
     expect(page).to have_no_content "Location: Boston"
+  end
 
+  scenario "the list should be displayed in alphabetical order" do
+    set_up
+    visit '/'
     expect("A meetup").to appear_before("test meetup")
   end
 end

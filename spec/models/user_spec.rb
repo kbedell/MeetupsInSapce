@@ -46,4 +46,16 @@ describe User do
   describe "user has meetups" do
     it { should have_many :meetups }
   end
+
+  describe "user has many members through meetups" do
+    it { should have_many :members }
+  end
+  
+  describe "user should not allow nil values" do
+    it { should_not have_valid(:provider).when(nil, "") }
+    it { should_not have_valid(:uid).when(nil, "") }
+    it { should_not have_valid(:username).when(nil, "") }
+    it { should_not have_valid(:email).when(nil, "") }
+    it { should_not have_valid(:avatar_url).when(nil, "") }
+  end
 end

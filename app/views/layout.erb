@@ -11,7 +11,7 @@
 <body>
 
   <!-- Start Top Bar -->
-  <div class="title-bar" data-responsive-toggle="menu" data-hide-for=mediumcd>
+  <div class="title-bar" data-responsive-toggle="menu" data-hide-for=medium>
     <button class="menu-icon" type="button" data-toggle></button>
     <div class="title-bar-title">Menu</div>
   </div>
@@ -43,12 +43,26 @@
   </div>
   <% end %>
 
+  <% errors_exist = defined? @errors %>
+  <% if errors_exist != nil %>
+    <% if  @errors.length > 0 %>
+      <div class="flash">
+        <div class="container">
+          <% @errors.each do |error| %>
+            <%= error %> <br>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
   <div class= "row column">
     <%= yield %>
   </div>
-  <script src="/javascripts/jquery-2.1.4.min.js"></script>
+  <script src="/javascripts/jquery.js"></script>
+  <script src="/javascripts/foundation.min.js"></script>
   <script src="/javascripts/app.js"></script>
   <script src="/javascripts/what-input.js"></script>
-  <script src="/javascripts/foundation.min.js"></script>
+  <script src="/javascripts/hide_button.js"></script>
 </body>
 </html>

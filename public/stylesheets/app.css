@@ -11,8 +11,21 @@ a:visited {
 }
 
 .container {
-  max-width: 1024px;
   margin: 0 auto;
+  max-width: 75rem;
+}
+
+.meetup_button {
+  display: inline-block;
+}
+
+.meetup_button:nth-of-type(2), .meetup_button:nth-of-type(3), .meetup_button:nth-of-type(4) {
+  padding-left: 15px;
+}
+
+.meetup_functions {
+  display:inline-block;
+  padding-left: 15px;
 }
 
 .hide_me {
@@ -47,7 +60,11 @@ label {
   max-width: 128px;
 }
 
-.top-bar, .top-bar ul {
+.submit_button {
+  display: inline-block;
+}
+
+.top-bar, .top-bar ul, .title-bar {
   background-color: #3C3C3C;
 }
 

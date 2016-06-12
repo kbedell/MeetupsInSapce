@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "user views all meetups" do
+feature "user views meetup details" do
   let(:user) do
     User.create(
       provider: "github",
@@ -44,12 +44,16 @@ feature "user views all meetups" do
     )
   end
 
-  scenario "user sees all of the meetup details" do
+  let (:set_up) do
     user
     user2
     meetup
     member
     member2
+  end
+
+  scenario "user sees all of the meetup details" do
+    set_up
     visit '/'
     click_link("test meetup")
 

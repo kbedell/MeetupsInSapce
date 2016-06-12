@@ -3,9 +3,11 @@ require 'rspec'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'orderly'
+require 'minitest'
 
 require_relative '../app.rb'
 Dir[__dir__ + '/support/*.rb'].each { |file| require_relative file }
+
 require 'shoulda-matchers'
 require 'valid_attribute'
 
@@ -18,4 +20,9 @@ RSpec.configure do |config|
   end
   OmniAuth.config.test_mode = true
   config.include AuthenticationHelper
+end
+
+RSpec.configure do |config|
+  config.include(Shoulda::Matchers::ActiveModel, type: :model)
+  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
 end

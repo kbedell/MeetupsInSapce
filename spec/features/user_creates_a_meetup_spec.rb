@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "user views all meetups" do
+feature "user creates a meetup" do
   let(:user) do
     User.create(
       provider: "github",
@@ -44,27 +44,28 @@ feature "user views all meetups" do
     )
   end
 
-  scenario "users sees a form" do
+  let(:set_up) do
     user
     user2
     meetup
     member
     member2
+  end
+
+  scenario "users sees a form" do
+    set_up
     visit '/'
     sign_in_as user
     click_link("Create new meetup")
 
-    expect(page).to have_content("Name")
-    expect(page).to have_content("Location")
-    expect(page).to have_content("Description")
+
+    find_field('Name').value
+    find_field('Location').value
+    find_field('Description').value
   end
 
   scenario "users recieves an error that they need to sign in" do
-    user
-    user2
-    meetup
-    member
-    member2
+    set_up
     visit '/'
     click_link("Create new meetup")
 
@@ -72,11 +73,7 @@ feature "user views all meetups" do
   end
 
   scenario "users submits a form" do
-    user
-    user2
-    meetup
-    member
-    member2
+    set_up
     visit '/'
     sign_in_as user
     click_link("Create new meetup")
