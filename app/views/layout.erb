@@ -46,16 +46,13 @@
   <% errors_exist = defined? @errors %>
   <% if errors_exist != nil %>
   <% if  @errors.length > 0 %>
-  <% if flash.any? %>
     <div class="flash">
       <div class="container">
         <% @errors.each do |error| %>
           <%= error %> <br>
         <% end %>
-        <%= flash[:notice] %>
       </div>
     </div>
-  <% end %>
   <% end %>
   <% end %>
 
